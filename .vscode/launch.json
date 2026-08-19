@@ -1,0 +1,49 @@
+{
+"version": "0.2.0",
+"configurations": [
+{
+"name": "GUI: HomeBank Converter (English)",
+"type": "debugpy",
+"request": "launch",
+"program": "${workspaceFolder}/main.py",
+"console": "integratedTerminal",
+"cwd": "${workspaceFolder}",
+"env": {
+"HBCONV_OUTPUT_LANGUAGE": "english"
+}
+},
+{
+"name": "GUI: HomeBank Converter (French)",
+"type": "debugpy",
+"request": "launch",
+"program": "${workspaceFolder}/main.py",
+"console": "integratedTerminal",
+"cwd": "${workspaceFolder}",
+"env": {
+"HBCONV_OUTPUT_LANGUAGE": "french"
+}
+},
+{
+"name": "CLI: Select & Convert (English)",
+"type": "debugpy",
+"request": "launch",
+"program": "${workspaceFolder}/scripts/select_and_convert.py",
+"console": "integratedTerminal",
+"cwd": "${workspaceFolder}",
+"env": {
+"HBCONV_OUTPUT_LANGUAGE": "english"
+}
+},
+{
+"name": "CLI: Select & Convert (French)",
+"type": "debugpy",
+"request": "launch",
+"program": "${workspaceFolder}/scripts/select_and_convert.py",
+"console": "integratedTerminal",
+"cwd": "${workspaceFolder}",
+"env": {
+"HBCONV_OUTPUT_LANGUAGE": "french"
+}
+}
+]
+}

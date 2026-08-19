@@ -1,0 +1,87 @@
+﻿Project overview
+----------------
+
+- Menu script: C:\Users\username\OneDrive\Programming\Python\Homebank New\main.py
+
+- Converters:
+  - AMEX: scripts/converters/amex_csv.py
+  - Keytrade: scripts/converters/keytrade_csv.py
+  - Argenta: scripts/converters/argenta_xlsx.py
+  - Mastercard: scripts/converters/mastercard_pdf.py
+
+- Statistics Pipeline:
+  - Automatically generates statistics for every conversion
+  - Both JSON (machine-readable) and TXT (human-readable) reports
+  - Reports saved alongside output CSV files
+  - Accessible via GUI "View Report" button
+  - Documentation: read_me/STATISTICS_FEATURE.md
+
+- Config (paths): scripts/config.py
+
+Distribution and one-click launch
+---------------------------------
+
+- One-click launcher (source mode): Launch_HomeBank_Converter.bat
+- Windows bundle build script: build_windows_bundle.ps1
+- Detailed guide: read_me/DISTRIBUTION_WINDOWS.md
+
+Configuration overrides
+-----------------------
+
+Configuration is resolved in this order:
+1. Built-in defaults (platform-specific)
+2. User config file(s):
+	- repository root: user_config.json
+	- home directory: .homebank_converter.json
+	- optional explicit path via env var: HBCONV_CONFIG_FILE
+3. Environment variables (highest priority):
+	- HBCONV_SOURCE_DIR
+	- HBCONV_SCRIPT_DIR
+	- HBCONV_HOMEBANK_DIR
+	- HBCONV_PAYMENT_RULES
+	- HBCONV_OUTPUT_AMEX_DIR
+	- HBCONV_OUTPUT_KEYTRADE_DIR
+	- HBCONV_OUTPUT_ARGENTA_DIR
+	- HBCONV_OUTPUT_MASTERCARD_DIR
+
+You can start from template file: user_config.example.json
+
+Startup validation and recovery
+-------------------------------
+
+At startup, folders and paths are validated.
+If a configured folder cannot be used, the app automatically falls back to a safe runtime folder and shows a friendly warning message.
+If PAYMENT_RULES is missing, it falls back to scripts/payment_rules.json when available.
+
+CSV structure for HomeBank import
+---------------------------------
+Columns: date;payment;info;payee;memo;amount;category;tags
+
+Tests (local only)
+------------------
+The test suite uses example files in `Input_file_examples/`. For security reasons this folder is not synchronized to GitHub, so CI may not be able to run the same tests.
+
+Test Modules:
+- test_select_and_convert.py: Core converter and detection tests (11 tests)
+- test_edge_cases_*.py: Edge case handling tests (7 tests)
+- test_statistics_pipeline.py: Statistics pipeline tests (28 tests)
+
+Recommended local test workflow (PowerShell):
+
+1. Activate the virtualenv:
+	& "c:\Users\username\OneDrive\Programming\Python\Homebank New\.venv\Scripts\Activate.ps1"
+
+2. Run all tests:
+	python -m pytest tests/ -v
+
+3. Or, run specific test module:
+	python -m pytest tests/test_select_and_convert.py -v
+	python -m pytest tests/test_statistics_pipeline.py -v
+
+Legacy unittest syntax still supported:
+	python -m unittest tests.test_select_and_convert
+	python -m unittest discover -s tests
+
+Notes:
+- All 46 tests pass with zero regressions
+- If you want CI to run the full batch tests, add a copy of `Input_file_examples/` to the repo or adapt tests to provide mock data.

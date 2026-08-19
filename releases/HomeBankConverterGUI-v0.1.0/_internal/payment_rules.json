@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "description": "Rules for HomeBank payment mode selection"
+  },
+  "default_payment": {
+    "code": "4",
+    "name_debit": "Outgoing transfer",
+    "name_credit": "Incoming transfer"
+  },
+  "rules": [
+    {
+      "name": "Outgoing instant transfer",
+      "payment": {
+        "code": "4",
+        "info": "Outgoing instant transfer"
+      },
+      "keywords": [
+        "instant transfer",
+        "virement instant",
+        "virement instantane",
+        "instantbetaling"
+      ]
+    },
+    {
+      "name": "Standing order",
+      "payment": {
+        "code": "6",
+        "info": "Standing order"
+      },
+      "keywords": [
+        "ordre permanent",
+        "permanent order",
+        "standing order",
+        "doorlopende opdracht"
+      ]
+    },
+    {
+      "name": "SEPA direct debit",
+      "payment": {
+        "code": "10",
+        "info": "SEPA direct debit"
+      },
+      "keywords": [
+        "domiciliation",
+        "direct debit",
+        "sepa direct debit"
+      ]
+    },
+    {
+      "name": "Debit card / Bancontact",
+      "payment": {
+        "code": "5",
+        "info": "debit card"
+      },
+      "keywords": [
+        "bancontact",
+        "maestro",
+        "debit card"
+      ]
+    },
+    {
+      "name": "E-commerce payment card",
+      "payment": {
+        "code": "11",
+        "info": "e-commerce payment card"
+      },
+      "keywords": [
+        "e-commerce",
+        "ecommerce",
+        "online purchase",
+        "internet purchase",
+        "card not present"
+      ]
+    }
+  ]
+}

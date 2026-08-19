@@ -1,0 +1,17 @@
+Input_file_examples/
+archives/
+
+# Keep CI-safe fixtures tracked even though private Input_file_examples/ is ignored
+!tests/fixtures/
+!tests/fixtures/Input_file_examples/
+!tests/fixtures/Input_file_examples/**
+
+__pycache__/
+*.pyc
+
+# Test run output log should remain local-only
+tests/test_select_and_convert_batch.log
+
+# Packaging/build outputs
+build/
+dist/

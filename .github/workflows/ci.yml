@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Show Python version
+        run: python --version
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install project dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install quality tools
+        run: pip install ruff black mypy
+
+      - name: Static checks (ruff)
+        run: python -m ruff check .
+
+      - name: Formatting checks (black)
+        run: python -m black --check .
+
+      - name: Type checks (mypy boundary pass)
+        run: |
+          python -m mypy --config-file mypy.ini \
+            main.py \
+            scripts/services/conversion_service.py \
+            scripts/services/detection_service.py \
+            scripts/services/logging_service.py \
+            scripts/config.py \
+            scripts/select_and_convert.py \
+            scripts/converters/utils.py \
+            scripts/converters/amex_csv.py \
+            scripts/converters/amex_xlsx.py \
+            scripts/converters/argenta_xlsx.py \
+            scripts/converters/keytrade_csv.py \
+            scripts/converters/mastercard_pdf.py \
+            scripts/gui_poc.py
+
+      - name: Syntax checks
+        run: python -m compileall -q scripts tests main.py
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v

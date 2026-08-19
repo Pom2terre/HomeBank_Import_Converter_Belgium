@@ -1,0 +1,13 @@
+{
+  "paths": {
+    "DOSSIER_SOURCE": "C:/Users/your-user/Downloads",
+    "DOSSIER_SCRIPT": "C:/path/to/Homebank New/scripts",
+    "DOSSIER_HOMEBANK": "C:/Users/your-user/Documents/HomeBank",
+    "PAYMENT_RULES": "C:/path/to/Homebank New/scripts/payment_rules.json",
+    "OUTPUT_LANGUAGE": "english",
+    "DOSSIER_SORTIE_AMEX": "C:/Users/your-user/Downloads/Import_Amex",
+    "DOSSIER_SORTIE_KEYTRADE": "C:/Users/your-user/Downloads/Import_Keytrade",
+    "DOSSIER_SORTIE_ARGENTA": "C:/Users/your-user/Downloads/Import_Argenta",
+    "DOSSIER_SORTIE_MASTERCARD": "C:/Users/your-user/Downloads/Import_Mastercard"
+  }
+}

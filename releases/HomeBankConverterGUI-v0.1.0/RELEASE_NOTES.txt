@@ -1,0 +1,6 @@
+HomeBank Converter Release
+Version: 0.1.0
+Built: 2026-08-18T16:38:16.8451924+02:00
+Bundle: HomeBankConverterGUI.exe
+
+This package contains the Windows desktop bundle and release notes.
